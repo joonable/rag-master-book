@@ -24,21 +24,30 @@
         current_step: str 
     ```
 
-    2.  **리듀서 방식 (Reducer)**: `Annotated`와 `operator.add` 등을 사용하여 기존 데이터에 새로운 데이터를 **합치는(Merge/Append)** 방식입니다. 대화 기록(Messages)이나 병렬 작업 결과를 모을 때 필수적입니다.
+    2.  **리듀서 방식 (Reducer)**: `Annotated`와 리듀서 함수(예: `operator.add`)를 사용하여 기존 데이터와 새로운 데이터를 **논리적으로 병합(Merge/Append)**하는 방식입니다.
     ```python
     import operator
     from typing import Annotated, TypedDict, List
 
     class MyState(TypedDict):
-        # operator.add는 리스트의 경우 .append()처럼 기존 리스트 뒤에 새 요소를 붙임
+        # 1. 리스트 합치기: operator.add는 기존 리스트 뒤에 새로운 요소를 이어 붙입니다.
+        # 예: ["A"] -> ["A", "B"] (덮어쓰지 않고 누적)
         messages: Annotated[List[str], operator.add]
         
-        # 사용자 정의 함수를 리듀서로 사용할 수도 있음
-        # (기존 값, 새로운 값)을 입력받아 최종 상태를 반환
-        count: Annotated[int, lambda old, new: old + new]
+        # 2. 숫자 누적: 커스텀 함수나 람다식을 사용하여 연산 결과를 누적할 수 있습니다.
+        # (기존 값, 새로운 값)을 인자로 받아 최종 결과값을 반환합니다.
+        total_count: Annotated[int, lambda old, new: old + new]
+        
+        # 3. 고급 병합: 특정 ID를 기준으로 중복을 제거하거나 업데이트하는 로직도 가능합니다.
+        # 예: 데이터가 오면 ID 기반으로 기존 것을 교체하거나 없으면 추가
     ```
 
-    *   **왜 중요한가요?**: 랭그래프의 노드는 상태 전체가 아니라 **업데이트하고 싶은 일부 필드**만 반환합니다. 리듀서가 설정된 필드는 "추가"되고, 그렇지 않은 필드는 "교체"되므로 데이터 흐름을 정교하게 제어할 수 있습니다.
+    *   **💡 핵심 원리 (왜 Annotated인가?)**: 
+        랭그래프의 노드는 상태 전체를 반환할 필요 없이 **"변경하고 싶은 필드"**만 딕셔너리로 반환하면 됩니다. 이때 랭그래프 엔진은 해당 필드에 **리듀서가 지정되어 있는지**를 확인합니다.
+        *   **리듀서가 없으면?**: `State[key] = new_value` (기존 값 삭제 후 교체)
+        *   **리듀서가 있으면?**: `State[key] = reducer(old_value, new_value)` (기존 값과 새 값을 합침)
+
+    *   **사용 시점**: 대화 기록(Messages)을 계속 쌓아야 할 때, 혹은 여러 노드가 동시에 작업한 결과를 하나로 취합해야 할 때 리듀서를 사용합니다.
 
 ---
 

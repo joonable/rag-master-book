@@ -8,8 +8,8 @@ from dotenv import load_dotenv
 load_dotenv()
 
 def inspect_storage():
-    persist_directory = "./.chroma"
-    parent_store_path = "./parent_store"
+    persist_directory = "chapter_04/data/chroma_db"
+    parent_store_path = "chapter_04/data/parent_store"
     
     # 1. 자식 문서(Chroma) 확인
     vectorstore = Chroma(

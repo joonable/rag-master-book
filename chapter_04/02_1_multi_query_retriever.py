@@ -21,7 +21,7 @@ load_dotenv()
 def main():
     # 설정값
     file_path = "chapter_04/data/How_to_invest_money.txt"
-    persist_directory = "./.chroma"
+    persist_directory = "chapter_04/data/chroma_db"
     collection_name = "multi_query_invest"
     
     # 2. 모델 및 임베딩 설정
