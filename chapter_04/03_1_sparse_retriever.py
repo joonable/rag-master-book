@@ -20,8 +20,8 @@ def kiwi_tokenize(text):
 
 def main():
     # 2. 문서 로드 또는 캐시된 데이터 불러오기
-    file_path = "chapter_04/data/투자설명서.pdf"
-    save_path = "chapter_04/data/투자설명서_chunks.pkl"
+    file_path = "data/투자설명서.pdf"
+    save_path = "data/투자설명서_chunks.pkl"
     
     docs = []
     if os.path.exists(save_path):

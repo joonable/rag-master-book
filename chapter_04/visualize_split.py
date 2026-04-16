@@ -8,8 +8,8 @@ from dotenv import load_dotenv
 load_dotenv()
 
 def visualize_hierarchy():
-    persist_directory = "chapter_04/data/chroma_db"
-    parent_store_path = "chapter_04/data/parent_store"
+    persist_directory = "data/chroma_db"
+    parent_store_path = "data/parent_store"
     
     # 1. 저장소 로드
     vectorstore = Chroma(

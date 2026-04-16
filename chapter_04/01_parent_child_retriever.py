@@ -39,7 +39,7 @@ class PersistentDocStore(BaseStore[str, bytes]):
 
 def get_parent_child_retriever():
     persist_directory = "./.chroma"
-    parent_store_path = "chapter_04/data/parent_store"
+    parent_store_path = "data/parent_store"
     
     embeddings = OpenAIEmbeddings()
 
@@ -67,7 +67,7 @@ def get_parent_child_retriever():
     return retriever, vectorstore
 
 def main():
-    file_path = "chapter_04/data/How_to_invest_money.txt"
+    file_path = "data/How_to_invest_money.txt"
     retriever, vectorstore = get_parent_child_retriever()
     
     # 5. 파일명 기준 인덱싱 여부 확인

@@ -84,7 +84,7 @@ class LLMRerankRetriever(BaseRetriever):
 
 def main():
     # 설정 및 데이터 로드
-    faiss_index_path = "chapter_04/data/faiss_index"
+    faiss_index_path = "data/faiss_index"
     if not os.path.exists(faiss_index_path):
         print("❌ 기존 FAISS 인덱스가 없습니다. 03_2 스크립트를 먼저 실행해 주세요.")
         return

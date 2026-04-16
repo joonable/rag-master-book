@@ -22,7 +22,7 @@ def format_docs(docs):
 
 def main():
     # 설정값 (02_1_multi_query_retriever.py에서 생성된 DB 경로와 컬렉션 이름 사용)
-    persist_directory = "chapter_04/data/chroma_db"
+    persist_directory = "data/chroma_db"
     collection_name = "multi_query_invest"
     
     # 2. 모델 및 임베딩 설정

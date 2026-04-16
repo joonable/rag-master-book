@@ -164,7 +164,7 @@ class CrossEncoderRAG:
                 print(f"[{i+1}] Score: {score:.4f} | {doc.page_content[:80]}...")
 
 def main():
-    faiss_index_path = "chapter_04/data/faiss_index"
+    faiss_index_path = "data/faiss_index"
     
     try:
         rag = CrossEncoderRAG(faiss_index_path)

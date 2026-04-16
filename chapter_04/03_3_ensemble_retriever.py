@@ -22,9 +22,9 @@ def kiwi_tokenize(text):
 
 def main():
     # 2. 문서 및 경로 설정
-    file_path = "chapter_04/data/투자설명서.pdf"
-    save_path = "chapter_04/data/투자설명서_chunks.pkl"
-    faiss_index_path = "chapter_04/data/faiss_index"
+    file_path = "data/투자설명서.pdf"
+    save_path = "data/투자설명서_chunks.pkl"
+    faiss_index_path = "data/faiss_index"
     
     # 2.1 분할된 문서 로드 (기존 데이터 재사용)
     docs = []

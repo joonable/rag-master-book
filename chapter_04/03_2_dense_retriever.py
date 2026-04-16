@@ -12,9 +12,9 @@ load_dotenv()
 
 def main():
     # 2. 문서 로드 또는 캐시된 데이터 불러오기
-    file_path = "chapter_04/data/투자설명서.pdf"
-    save_path = "chapter_04/data/투자설명서_chunks.pkl"
-    faiss_index_path = "chapter_04/data/faiss_index"
+    file_path = "data/투자설명서.pdf"
+    save_path = "data/투자설명서_chunks.pkl"
+    faiss_index_path = "data/faiss_index"
     
     # 2.1 분할된 문서 로드
     docs = []
